@@ -7,15 +7,10 @@ import java.util.UUID;
 
 public class CocktailResource {
     private UUID cocktailId;
-    @JsonIgnore
     private String name;
-    @JsonIgnore
     private String glass;
-    @JsonIgnore
     private String instructions;
-    @JsonIgnore
     private String image;
-    @JsonIgnore
     private List<String> ingredients;
 
     public CocktailResource(UUID cocktailId, String name, String glass, String instructions, String image, List<String> ingredients) {

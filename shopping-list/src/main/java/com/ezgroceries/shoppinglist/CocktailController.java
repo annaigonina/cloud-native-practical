@@ -1,13 +1,7 @@
 package com.ezgroceries.shoppinglist;
 
-import org.springframework.boot.autoconfigure.web.WebProperties;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.annotation.Resources;
-import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -15,10 +9,15 @@ import java.util.UUID;
 @RestController
 @RequestMapping(produces = "application/json")
 public class CocktailController {
+    private CocktailService cocktailService;
+
+    public CocktailController(CocktailService cocktailService) {
+        this.cocktailService = cocktailService;
+    }
 
     @GetMapping(value = "/cocktails")
     public List<CocktailResource> get(@RequestParam String search) {
-        return getDummyResources();
+        return cocktailService.getCocktails(search);
     }
 
     public List<CocktailResource> getDummyResources() {
