@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist;
+package com.ezgroceries.cocktail;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

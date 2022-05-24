@@ -1,4 +1,4 @@
-package com.ezgroceries.shoppinglist;
+package com.ezgroceries.cocktail;
 
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +9,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(produces = "application/json")
 public class CocktailController {
-    private CocktailService cocktailService;
+    private final CocktailService cocktailService;
 
     public CocktailController(CocktailService cocktailService) {
         this.cocktailService = cocktailService;

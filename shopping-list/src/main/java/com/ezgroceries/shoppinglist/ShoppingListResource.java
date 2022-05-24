@@ -1,14 +1,14 @@
 package com.ezgroceries.shoppinglist;
 
+import com.ezgroceries.cocktail.CocktailResource;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 import java.util.UUID;
 
-public class ShoppingList {
+public class ShoppingListResource {
     private UUID shoppingListId;
     private String name;
-    @JsonIgnore
     private List<CocktailResource> cocktails;
     private List<String> ingredients;
 
@@ -29,11 +29,11 @@ public class ShoppingList {
         this.cocktails = cocktails;
     }
 
-    public ShoppingList(String name) {
+    public ShoppingListResource(String name) {
         this.name = name;
     }
 
-    public ShoppingList(UUID shoppingListId, String name, List<CocktailResource> cocktails, List<String> ingredients) {
+    public ShoppingListResource(UUID shoppingListId, String name, List<CocktailResource> cocktails, List<String> ingredients) {
         this.shoppingListId = shoppingListId;
         this.name = name;
         this.cocktails = cocktails;

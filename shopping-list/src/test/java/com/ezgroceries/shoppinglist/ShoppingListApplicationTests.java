@@ -1,11 +1,13 @@
 package com.ezgroceries.shoppinglist;
 
+import com.ezgroceries.cocktail.CocktailController;
+import com.ezgroceries.cocktail.CocktailResource;
+import com.ezgroceries.cocktail.CocktailService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -59,7 +61,7 @@ private CocktailService cocktailService;
 
     @Test
     public void testCreateShoppingList() throws Exception {
-        ShoppingList testShoppingList = new ShoppingList(UUID.randomUUID(), "Stephanie's birthday", null, null);
+        ShoppingListResource testShoppingList = new ShoppingListResource(UUID.randomUUID(), "Stephanie's birthday", null, null);
 
         mockMvc.perform(post("/shopping-lists")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -90,7 +92,7 @@ private CocktailService cocktailService;
         UUID shoppingListId = UUID.randomUUID();
         String name = "Stephanie's birthday";
         List<String> ingredients = Arrays.asList("Tequila", "Triple sec", "Lime juice", "Salt", "Blue Curacao");
-        ShoppingList testShoppingList = new ShoppingList(shoppingListId, name, null, ingredients);
+        ShoppingListResource testShoppingList = new ShoppingListResource(shoppingListId, name, null, ingredients);
 
         mockMvc.perform(get("/shopping-lists/{shoppingListId}",shoppingListId.toString())
                         .contentType(MediaType.APPLICATION_JSON)
@@ -103,11 +105,11 @@ private CocktailService cocktailService;
 
     @Test
     public void testGetAllShoppingLists() throws Exception {
-        List<ShoppingList> testShoppingLists = Arrays.asList(
-                new ShoppingList(
+        List<ShoppingListResource> testShoppingLists = Arrays.asList(
+                new ShoppingListResource(
                         UUID.fromString("4ba92a46-1d1b-4e52-8e38-13cd56c7224c"), "Stephanie's birthday", null,
                         Arrays.asList("Tequila", "Triple sec", "Lime juice", "Salt", "Blue Curacao")),
-                new ShoppingList(
+                new ShoppingListResource(
                         UUID.fromString("6c7d09c2-8a25-4d54-a979-25ae779d2465"), "My Birthday", null,
                         Arrays.asList("Tequila", "Triple sec", "Lime juice", "Salt", "Blue Curacao")));
 
