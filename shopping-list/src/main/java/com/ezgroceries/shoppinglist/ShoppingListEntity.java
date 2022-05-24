@@ -4,6 +4,7 @@ import com.ezgroceries.cocktail.CocktailEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -13,10 +14,16 @@ public class ShoppingListEntity {
     @Id
     @Column(name = "ID")
     private UUID shoppingListId;
+
     private String name;
 
-    @ManyToMany(mappedBy = "shopping_list")
-    private Set<CocktailEntity> cocktails = new HashSet<>();
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "COCKTAIL_SHOPPING_LIST",
+            joinColumns = { @JoinColumn(name = "SHOPPING_LIST_ID")},
+            inverseJoinColumns = { @JoinColumn(name = "COCKTAIL_ID")}
+    )
+    private List<CocktailEntity> cocktails;
 
     public ShoppingListEntity(){
     }
@@ -42,11 +49,11 @@ public class ShoppingListEntity {
         this.name = name;
     }
 
-   /* public Set<CocktailEntity> getCocktails() {
+    public List<CocktailEntity> getCocktails() {
         return cocktails;
     }
 
-    public void setCocktails(Set<CocktailEntity> cocktails) {
+    public void setCocktails(List<CocktailEntity> cocktails) {
         this.cocktails = cocktails;
-    }*/
+    }
 }

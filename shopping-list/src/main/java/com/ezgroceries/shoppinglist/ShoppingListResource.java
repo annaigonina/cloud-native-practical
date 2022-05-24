@@ -9,29 +9,9 @@ import java.util.UUID;
 public class ShoppingListResource {
     private UUID shoppingListId;
     private String name;
+    @JsonIgnore
     private List<CocktailResource> cocktails;
     private List<String> ingredients;
-
-    public List<String> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(List<String> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public List<CocktailResource> getCocktails() {
-        return cocktails;
-    }
-
-
-    public void setCocktails(List<CocktailResource> cocktails) {
-        this.cocktails = cocktails;
-    }
-
-    public ShoppingListResource(String name) {
-        this.name = name;
-    }
 
     public ShoppingListResource(UUID shoppingListId, String name, List<CocktailResource> cocktails, List<String> ingredients) {
         this.shoppingListId = shoppingListId;
@@ -54,5 +34,21 @@ public class ShoppingListResource {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<CocktailResource> getCocktails() {
+        return cocktails;
+    }
+
+    public void setCocktails(List<CocktailResource> cocktails) {
+        this.cocktails = cocktails;
+    }
+
+    public List<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
     }
 }

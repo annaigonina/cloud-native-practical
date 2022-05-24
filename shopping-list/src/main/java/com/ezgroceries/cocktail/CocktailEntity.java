@@ -2,6 +2,7 @@ package com.ezgroceries.cocktail;
 
 import com.ezgroceries.shoppinglist.ShoppingListEntity;
 import com.ezgroceries.utils.StringSetConverter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -15,6 +16,7 @@ public class CocktailEntity {
     @Column(name = "ID")
     private UUID cocktailId;
 
+    @JsonIgnore
     @Column(name = "ID_DRINK")
     private String drinkId;
 
@@ -22,14 +24,6 @@ public class CocktailEntity {
 
     @Convert(converter = StringSetConverter.class)
     private Set<String> ingredients;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "COCKTAIL_SHOPPING_LIST",
-            joinColumns = { @JoinColumn(name = "COCKTAIL_ID")},
-            inverseJoinColumns = { @JoinColumn(name = "SHOPPING_LIST_ID")}
-    )
-    private Set<ShoppingListEntity> shoppingLists = new HashSet<>();
 
     public CocktailEntity(){
     }
